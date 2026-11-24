@@ -1,7 +1,7 @@
-import { priorityOrder, statuses } from './ticket.js';
+import { priorityOrder, statuses, TicketType } from './ticket.js';
 import { TicketRenderer } from './ticketRender.js';
 
-export const feedbackLabel = document.getElementById("feedback");
+export const feedbackLabel: object = document.getElementById("feedback");
 
 export class Helpdesk extends TicketRenderer {
     constructor() {
@@ -14,7 +14,7 @@ export class Helpdesk extends TicketRenderer {
         this.loadFromStorage();
     }
 
-    addTicket(ticket) {
+    addTicket(ticket: TicketType): boolean {
         feedbackLabel.textContent = "";
 
         if (this.tickets.length < 1000) {
@@ -27,11 +27,11 @@ export class Helpdesk extends TicketRenderer {
         return false;
     }
 
-    getTickets() {
+    getTickets(): object {
         return this.tickets;
     }
 
-    removeTicket(id) {
+    removeTicket(id: number): void | boolean {
         let left = 0,
             right = this.tickets.length - 1;
 
@@ -55,11 +55,11 @@ export class Helpdesk extends TicketRenderer {
         return false;
     }
 
-    getTicketAmount() {
+    getTicketAmount(): number {
         return this.tickets.length;
     }
 
-    filterTicketsByStatus(status) {
+    filterTicketsByStatus(status: string): object {
         if (status === "all")
             return this.tickets;
 

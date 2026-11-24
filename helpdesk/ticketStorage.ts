@@ -1,5 +1,5 @@
 export class TicketStorage {
-    saveToStorage() {
+    saveToStorage(): void {
         const data = {
             tickets: this.tickets,
             currentId: this.currentId
@@ -7,7 +7,7 @@ export class TicketStorage {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
     }
 
-    loadFromStorage() {
+    loadFromStorage(): void {
         const raw = localStorage.getItem(this.storageKey);
         if (!raw) return;
 

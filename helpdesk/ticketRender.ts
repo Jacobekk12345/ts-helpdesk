@@ -1,8 +1,8 @@
-import { priorityOrder } from './ticket.js';
+import { priorityOrder, TicketType } from './ticket.js';
 import { TicketStorage } from './ticketStorage.js';
 
 export class TicketRenderer extends TicketStorage {
-    renderTickets() {
+    renderTickets(): void {
         this.ticketList.innerHTML = "";
 
         let filteredTickets = this.filterTicketsByStatus(this.statusElement.value);
@@ -24,7 +24,7 @@ export class TicketRenderer extends TicketStorage {
         }
     }
 
-    createTicketDiv(ticket) {
+    createTicketDiv(ticket: TicketType): void {
         let newTicketDiv = document.createElement("div");
         newTicketDiv.id = ticket.id;
         newTicketDiv.className = "ticketDiv";

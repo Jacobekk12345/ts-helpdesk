@@ -1,8 +1,9 @@
 import { Helpdesk, feedbackLabel } from './helpdesk.js';
+import {TicketType} from './ticket.ts'
 
 document.getElementById("title").focus();
 
-const helpdesk = new Helpdesk();
+const helpdesk: Helpdesk = new Helpdesk();
 
 helpdesk.renderTickets();
 
@@ -11,14 +12,14 @@ document.getElementById("submitButton").addEventListener('click', (e) => {
 
     feedbackLabel.textContent = "";
 
-    let title = document.getElementById("title").value.trim();
+    let title: string = document.getElementById("title").value.trim();
 
     if (title.length < 3 || title.length > 80) {
         feedbackLabel.textContent = "tickets title must have between 3 and 80 characters";
         return;
     }
 
-    let ticket = {
+    let ticket: TicketType = {
         id: helpdesk.currentId++,
         title: title,
         priority: document.getElementById("priority").value,
@@ -37,10 +38,10 @@ helpdesk.statusElement.addEventListener('change', () => {
     helpdesk.renderTickets();
 });
 
-const fileInput = document.getElementById("importInput");
+const fileInput: object = document.getElementById("importInput");
 
 // async lets us use await while the selected file is being read.
-async function handleImport(event) {
+async function handleImport(event: object): void {
     const file = event.target.files[0];
 
     if (!file) {
