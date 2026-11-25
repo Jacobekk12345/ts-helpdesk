@@ -1,11 +1,13 @@
 import { priorityOrder, statuses, TicketType } from './ticket.ts';
 import { TicketRenderer } from './ticketRender.ts';
 
+type Feedback = string;
+type Success = boolean;
+
 export const feedbackLabel: object = document.getElementById("feedback");
 
 export class Helpdesk extends TicketRenderer {
     constructor() {
-        super();
         this.storageKey: symbol = Symbol("helpdeskData");
         this.tickets: TicketType[] = [];
         this.currentId: number = 1;
@@ -14,7 +16,7 @@ export class Helpdesk extends TicketRenderer {
         this.loadFromStorage();
     }
 
-    addTicket(ticket: TicketType): boolean {
+    addTicket(ticket: TicketType): Success {
         feedbackLabel.textContent = "";
 
         if (this.tickets.length < 1000) {
@@ -70,7 +72,7 @@ export class Helpdesk extends TicketRenderer {
         return this.tickets.filter(ticket => ticket.status === status);
     }
 
-    import(importData: object | string) {
+    import(importData: object | string): Feedback {
         let data: TicketType[];
 
         try {
