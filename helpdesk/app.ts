@@ -1,4 +1,4 @@
-import { Helpdesk, feedbackLabel } from './helpdesk.js';
+import { Helpdesk, feedbackLabel } from './helpdesk.ts';
 import {TicketType} from './ticket.ts'
 
 document.getElementById("title").focus();
@@ -42,7 +42,7 @@ const fileInput: object = document.getElementById("importInput");
 
 // async lets us use await while the selected file is being read.
 async function handleImport(event: object): void {
-    const file = event.target.files[0];
+    const file: object = event.target.files[0];
 
     if (!file) {
         return;
@@ -50,7 +50,7 @@ async function handleImport(event: object): void {
 
     try {
         // file.text() returns a Promise with the file's text.
-        const importData = await file.text();
+        const importData: string = await file.text();
 
         alert(helpdesk.import(importData));
     }

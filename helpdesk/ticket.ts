@@ -4,7 +4,7 @@ export const priorityOrder: object = {
     low: 3
 }
 
-export const statuses: object = ['new', 'doing', 'done'];
+export const statuses: string[] = ['new', 'doing', 'done'];
 
 export type TicketType = {
     id: number,

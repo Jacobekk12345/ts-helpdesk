@@ -1,14 +1,14 @@
-import { priorityOrder, TicketType } from './ticket.js';
-import { TicketStorage } from './ticketStorage.js';
+import { priorityOrder, TicketType } from './ticket.ts';
+import { TicketStorage } from './ticketStorage.ts';
 
 export class TicketRenderer extends TicketStorage {
     renderTickets(): void {
         this.ticketList.innerHTML = "";
 
-        let filteredTickets: object = this.filterTicketsByStatus(this.statusElement.value);
+        let filteredTickets: TicketType[] = this.filterTicketsByStatus(this.statusElement.value);
 
         // Sort a copy so the original tickets stay in ID order.
-        let sortedTickets: object = [...filteredTickets].sort(
+        let sortedTickets: TicketType[] = [...filteredTickets].sort(
             (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
         );
 

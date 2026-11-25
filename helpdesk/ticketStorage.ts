@@ -1,5 +1,5 @@
 type StorageData = {
-    data: object,
+    data: TicketType[],
     currentId: number
 }
 

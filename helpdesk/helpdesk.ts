@@ -1,13 +1,13 @@
-import { priorityOrder, statuses, TicketType } from './ticket.js';
-import { TicketRenderer } from './ticketRender.js';
+import { priorityOrder, statuses, TicketType } from './ticket.ts';
+import { TicketRenderer } from './ticketRender.ts';
 
 export const feedbackLabel: object = document.getElementById("feedback");
 
 export class Helpdesk extends TicketRenderer {
     constructor() {
         super();
-        this.storageKey: string = "helpdeskData";
-        this.tickets: object = [];
+        this.storageKey: symbol = Symbol("helpdeskData");
+        this.tickets: TicketType[] = [];
         this.currentId: number = 1;
         this.statusElement: object = document.getElementById("status");
         this.ticketList: object = document.getElementById("list");
@@ -27,7 +27,7 @@ export class Helpdesk extends TicketRenderer {
         return false;
     }
 
-    getTickets(): object {
+    getTickets(): TicketType[] {
         return this.tickets;
     }
 
@@ -59,7 +59,7 @@ export class Helpdesk extends TicketRenderer {
         return this.tickets.length;
     }
 
-    filterTicketsByStatus(status: string): object {
+    filterTicketsByStatus(status: string): TicketType[] {
         if (status === "all")
             return this.tickets;
 
@@ -70,8 +70,8 @@ export class Helpdesk extends TicketRenderer {
         return this.tickets.filter(ticket => ticket.status === status);
     }
 
-    import(importData) {
-        let data;
+    import(importData: data | string) {
+        let data: object;
 
         try {
             data = JSON.parse(importData);
