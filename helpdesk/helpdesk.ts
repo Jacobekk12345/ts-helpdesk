@@ -70,8 +70,8 @@ export class Helpdesk extends TicketRenderer {
         return this.tickets.filter(ticket => ticket.status === status);
     }
 
-    import(importData: data | string) {
-        let data: object;
+    import(importData: object | string) {
+        let data: TicketType[];
 
         try {
             data = JSON.parse(importData);
@@ -80,34 +80,8 @@ export class Helpdesk extends TicketRenderer {
             return "invalid JSON file";
         }
 
-        if (!Array.isArray(data))
-            return "wrong JSON format";
-
         if (data.length > 1000)
             return "too many tickets in the file";
-
-        for (const ticket of data) {
-            if (ticket == null || typeof ticket !== "object")
-                return "each ticket must be an object";
-
-            if (!Number.isInteger(ticket.id) || ticket.id < 1)
-                return "id needs to be a positive integer";
-
-            if (typeof ticket.title !== "string")
-                return "title needs to be of type string";
-
-            if (typeof ticket.priority !== "string")
-                return "priority needs to be of type string";
-
-            if (!(ticket.priority in priorityOrder))
-                return "incorrect priority";
-
-            if (typeof ticket.status !== "string")
-                return "status needs to be of type string";
-
-            if (!statuses.includes(ticket.status))
-                return "incorrect status";
-        }
 
         // Keep tickets in ID order because removeTicket uses binary search.
         data.sort((a, b) => a.id - b.id);
