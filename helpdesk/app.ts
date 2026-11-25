@@ -38,7 +38,7 @@ helpdesk.statusElement.addEventListener('change', () => {
     helpdesk.renderTickets();
 });
 
-const fileInput: object = document.getElementById("importInput");
+const fileInput: HTMLElement = document.getElementById("importInput");
 
 // async lets us use await while the selected file is being read.
 async function handleImport(event: object): void {

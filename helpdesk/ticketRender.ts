@@ -25,22 +25,22 @@ export class TicketRenderer extends TicketStorage {
     }
 
     createTicketDiv(ticket: TicketType): void {
-        let newTicketDiv: object = document.createElement("div");
+        let newTicketDiv: HTMLElement = document.createElement("div");
         newTicketDiv.id = ticket.id;
         newTicketDiv.className = "ticketDiv";
 
-        let titleLabel: object = document.createElement("p");
+        let titleLabel: HTMLElement = document.createElement("p");
         titleLabel.textContent = ticket.title;
         titleLabel.className = "ticketTitle";
 
-        let priorityLabel: object = document.createElement("p");
+        let priorityLabel: HTMLElement = document.createElement("p");
         priorityLabel.textContent = `Priority: ${ticket.priority}`;
         priorityLabel.className = "ticketPriority";
 
-        let statusLabel: object = document.createElement("p");
+        let statusLabel: HTMLElement = document.createElement("p");
         statusLabel.className = "ticketStatus";
 
-        let statusSelect: object = document.createElement("select");
+        let statusSelect: HTMLElement = document.createElement("select");
         statusSelect.className = "ticketStatusSelect";
         statusSelect.id = `statusSelect${ticket.id}`;
 
@@ -57,7 +57,7 @@ export class TicketRenderer extends TicketStorage {
         statusLabel.textContent = "Status: ";
         statusLabel.appendChild(statusSelect);
 
-        const removeLabel: object = document.createElement("p");
+        const removeLabel: HTMLElement = document.createElement("p");
         removeLabel.className = "removeLabel";
         removeLabel.textContent = "Remove";
 

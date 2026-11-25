@@ -4,15 +4,15 @@ import { TicketRenderer } from './ticketRender.ts';
 type Feedback = string;
 type Success = boolean;
 
-export const feedbackLabel: object = document.getElementById("feedback");
+export const feedbackLabel: HTMLElement = document.getElementById("feedback");
 
 export class Helpdesk extends TicketRenderer {
     constructor() {
         this.storageKey: symbol = Symbol("helpdeskData");
         this.tickets: TicketType[] = [];
         this.currentId: number = 1;
-        this.statusElement: object = document.getElementById("status");
-        this.ticketList: object = document.getElementById("list");
+        this.statusElement: HTMLElement = document.getElementById("status");
+        this.ticketList: HTMLElement = document.getElementById("list");
         this.loadFromStorage();
     }
 
