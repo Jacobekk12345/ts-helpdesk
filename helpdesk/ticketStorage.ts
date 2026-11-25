@@ -1,6 +1,11 @@
+type StorageData = {
+    data: object,
+    currentId: number
+}
+
 export class TicketStorage {
     saveToStorage(): void {
-        const data = {
+        const data: StorageData = {
             tickets: this.tickets,
             currentId: this.currentId
         };
@@ -8,11 +13,11 @@ export class TicketStorage {
     }
 
     loadFromStorage(): void {
-        const raw = localStorage.getItem(this.storageKey);
+        const raw: object = localStorage.getItem(this.storageKey);
         if (!raw) return;
 
         try {
-            const data = JSON.parse(raw);
+            const data: StorageData = JSON.parse(raw);
             this.tickets = data.tickets ?? [];
             this.currentId = data.currentId ?? 1;
         } catch (e) {

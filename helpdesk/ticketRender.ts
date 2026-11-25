@@ -5,10 +5,10 @@ export class TicketRenderer extends TicketStorage {
     renderTickets(): void {
         this.ticketList.innerHTML = "";
 
-        let filteredTickets = this.filterTicketsByStatus(this.statusElement.value);
+        let filteredTickets: object = this.filterTicketsByStatus(this.statusElement.value);
 
         // Sort a copy so the original tickets stay in ID order.
-        let sortedTickets = [...filteredTickets].sort(
+        let sortedTickets: object = [...filteredTickets].sort(
             (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
         );
 
@@ -25,28 +25,28 @@ export class TicketRenderer extends TicketStorage {
     }
 
     createTicketDiv(ticket: TicketType): void {
-        let newTicketDiv = document.createElement("div");
+        let newTicketDiv: object = document.createElement("div");
         newTicketDiv.id = ticket.id;
         newTicketDiv.className = "ticketDiv";
 
-        let titleLabel = document.createElement("p");
+        let titleLabel: object = document.createElement("p");
         titleLabel.textContent = ticket.title;
         titleLabel.className = "ticketTitle";
 
-        let priorityLabel = document.createElement("p");
+        let priorityLabel: object = document.createElement("p");
         priorityLabel.textContent = `Priority: ${ticket.priority}`;
         priorityLabel.className = "ticketPriority";
 
-        let statusLabel = document.createElement("p");
+        let statusLabel: object = document.createElement("p");
         statusLabel.className = "ticketStatus";
 
-        let statusSelect = document.createElement("select");
+        let statusSelect: object = document.createElement("select");
         statusSelect.className = "ticketStatusSelect";
         statusSelect.id = `statusSelect${ticket.id}`;
 
-        const optionNew = new Option("New", "new");
-        const optionDoing = new Option("Doing", "doing");
-        const optionDone = new Option("Done", "done");
+        const optionNew: Option = new Option("New", "new");
+        const optionDoing: Option = new Option("Doing", "doing");
+        const optionDone: Option = new Option("Done", "done");
 
         statusSelect.add(optionNew);
         statusSelect.add(optionDoing);
@@ -57,7 +57,7 @@ export class TicketRenderer extends TicketStorage {
         statusLabel.textContent = "Status: ";
         statusLabel.appendChild(statusSelect);
 
-        const removeLabel = document.createElement("p");
+        const removeLabel: object = document.createElement("p");
         removeLabel.className = "removeLabel";
         removeLabel.textContent = "Remove";
 

@@ -6,11 +6,11 @@ export const feedbackLabel: object = document.getElementById("feedback");
 export class Helpdesk extends TicketRenderer {
     constructor() {
         super();
-        this.storageKey = "helpdeskData";
-        this.tickets = [];
-        this.currentId = 1;
-        this.statusElement = document.getElementById("status");
-        this.ticketList = document.getElementById("list");
+        this.storageKey: string = "helpdeskData";
+        this.tickets: object = [];
+        this.currentId: number = 1;
+        this.statusElement: object = document.getElementById("status");
+        this.ticketList: object = document.getElementById("list");
         this.loadFromStorage();
     }
 
